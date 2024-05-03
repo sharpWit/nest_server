@@ -7,6 +7,14 @@ async function bootstrap() {
   // Create a NestJS application instance by passing the AppModule to the NestFactory
   const app = await NestFactory.create(AppModule);
 
+  // Enable CORS with specific options
+  app.enableCors({
+    origin: ['http://127.0.0.1:5500'], // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allow these HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
+    credentials: true, // Allow credentials such as cookies
+  });
+
   // Use DocumentBuilder to create a new Swagger document configuration
   const config = new DocumentBuilder()
     .setTitle('Recipes API') // Set the title of the API
