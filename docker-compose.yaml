@@ -1,12 +1,24 @@
 version: '3.8'
 
 services:
+  nest_server:
+    build: .
+    ports:
+      - '9000:3000'
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
   postgres:
     image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mydb
     volumes:
       - nest_server_volume:/var/lib/postgresql/data
     ports:

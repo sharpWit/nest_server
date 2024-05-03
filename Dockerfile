@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM node:lts-alpine3.19
 # Set the working directory
 WORKDIR /app
@@ -11,3 +10,4 @@ COPY . .
 EXPOSE 3000
 CMD ["npm", "run", "start:dev"]
 
+RUN npx prisma generate
